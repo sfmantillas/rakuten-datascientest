@@ -8,7 +8,7 @@ def main():
     page = st.sidebar.selectbox("Select a page", ["Welcome", 
     "Project description", "Data Exploration", 
     "Preprocessing", "ML algorithms", 
-    "DNN model", "Conclusions"])
+    "CNN model", "Conclusions"])
 
     if page == "Welcome":
         import page0
@@ -27,7 +27,7 @@ def main():
     elif page == "ML algorithms":
         import page4
         page4.app()
-    elif page == "DNN model":
+    elif page == "CNN model":
         import page5
         page5.app()
     elif page == "Conclusions":

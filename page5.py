@@ -11,7 +11,7 @@ img_model = Image.open("Images/5_DNN_Model/model.png")
 
 def app():
     
-    st.title("Deep Neural Network classifier using text and images")
+    st.title("Convolutional Neural Network classifier using text and images")
 
 #############################################
     st.write("---")
