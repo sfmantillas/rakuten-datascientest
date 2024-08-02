@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from PIL import Image
+from io import StringIO
 
 img_Distr_product_type_codes = Image.open("Images/2_Data_Exploration/Distr_product_type_codes.png")
 img_Distr_product_type_codes_pie = Image.open("Images/2_Data_Exploration/Distr_product_type_codes_pie.png")
@@ -15,6 +16,29 @@ image_paths = [f'Images/2_Data_Exploration/collage_padding_{i}.png' for i in lis
 # List of image captions for dropdown menu
 image_names = [f'Product type code {i}' for i in list_categories]
 
+X_train = pd.read_csv('./Datasets/X_train.csv',index_col=0)
+Y_train = pd.read_csv('./Datasets/Y_train.csv',index_col=0)
+X_test = pd.read_csv('./Datasets/X_test.csv',index_col=0)
+
+img_example_0 = Image.open("Images/2_Data_Exploration/image_1008141237_product_436067568a.jpg")
+img_example_1 = Image.open("Images/2_Data_Exploration/image_938777978_product_201115110a.jpg")
+img_example_2 = Image.open("Images/2_Data_Exploration/image_457047496_product_50418756a.jpg")
+img_example_3 = Image.open("Images/2_Data_Exploration/image_1077757786_product_278535884a.jpg")
+img_example_4 = Image.open("Images/2_Data_Exploration/image_393356830_product_5862738a.jpg")
+
+img_example_5 = Image.open("Images/2_Data_Exploration/image_1274228667_product_133389013.jpg")
+img_example_6 = Image.open("Images/2_Data_Exploration/image_1295960357_product_4128438366.jpg")
+img_example_7 = Image.open("Images/2_Data_Exploration/image_1265224052_product_3929899732.jpg")
+img_example_8 = Image.open("Images/2_Data_Exploration/image_940543690_product_152993898.jpg")
+img_example_9 = Image.open("Images/2_Data_Exploration/image_1310030687_product_4181949876.jpg")
+
+def capture_df_info(df):
+    info_buffer = StringIO()
+    df.info(buf=info_buffer)
+    info_buffer.seek(0)
+    return info_buffer.getvalue()
+
+
 # Initialize session state
 if 'selected_image_index' not in st.session_state:
     st.session_state.selected_image_index = 0
@@ -28,14 +52,168 @@ def app():
             st.markdown(
             """
             <p style="font-size: 25px;">
-            The dataset consists of two three files, X_train.csv with 84916 items,
-            and the columns 'designation' (character array), 'description' (character array), 
-            'productid' (integer), and 'imageid'  (integer), y_train.csv with with 84916 
-            items and the column 'prdtypecode'  (integer) corresponding
-            to the target labels of the items described in file X_train.csv, and 
-            X_train.csv, with 13812 items and the same features of X_train.csv, leaving
-            the 'prdtypecode' labels unknown as part of the challenge. 
+            The dataset consists of three CSV files: X_train.csv, 
+            y_train.csv and X_test.csv. 
+            X_train.csv contains information of 84916 items,
+            divided in the columns 'designation' (character array), 
+            'description' (character array), 
+            'productid' (integer), and 'imageid'  (integer). A
+            sample of the file is shown below:
             </p>
+            """
+            ,
+            unsafe_allow_html=True
+        )
+    
+    st.write(X_train[1:6])
+    with st.container():
+        with st.container(): 
+            st.markdown(
+            """
+            <p style="font-size: 25px;">
+            Attached to the CSV files shared by Rakuten, 
+            there is also a ZIP file containing two folders, 
+            'image_train' and 'image_test', and inside them the 
+            photographs of the products as JPG files, one 
+            image per entry in the CSV files. 
+            The corresponding JPG images of the products displayed
+            above and contained in the folder 'image_train'
+            are shown below:
+            </p>
+            """
+            ,
+            unsafe_allow_html=True
+        )
+
+        image_column_0, image_column_1, image_column_2, image_column_3, image_column_4 = st.columns((1,1,1,1,1))
+        with image_column_0:
+            st.image(img_example_0)
+            st.text("productid: \n436067568")
+        with image_column_1:
+            st.image(img_example_1)
+            st.text("productid: \n201115110")
+        with image_column_2:
+            st.image(img_example_2)
+            st.text("productid: \n50418756")
+        with image_column_3:
+            st.image(img_example_3)
+            st.text("productid: \n278535884")
+        with image_column_4:
+            st.image(img_example_4)
+            st.text("productid: \n5862738")
+
+    with st.container(): 
+            st.markdown(
+            """
+            <p style="font-size: 25px;">
+            y_train.csv with with 84916 
+            items and the column 'prdtypecode'  (integer) corresponding
+            to the target labels of the items described in file X_train.csv:
+            </p>
+            """
+            ,
+            unsafe_allow_html=True
+        )
+    
+    st.write(Y_train[1:6])
+
+    with st.container(): 
+            st.markdown(
+            """
+            <p style="font-size: 25px;">
+            and 
+            X_train.csv, with 13812 items and the same features of X_train.csv, leaving
+            the 'prdtypecode' labels unknown as part of the challenge: 
+            </p>
+            """
+            ,
+            unsafe_allow_html=True
+        )
+    
+    st.write(X_test[1:6])
+    with st.container():
+        with st.container(): 
+            st.markdown(
+            """
+            <p style="font-size: 25px;">
+            The corresponding JPG images of the products displayed
+            above and contained in the folder 'image_test'
+            are shown below:
+            </p>
+            """
+            ,
+            unsafe_allow_html=True
+        )
+
+        image_column_0, image_column_1, image_column_2, image_column_3, image_column_4 = st.columns((1,1,1,1,1))
+        with image_column_0:
+            st.image(img_example_5)
+            st.text("productid: \n133389013")
+        with image_column_1:
+            st.image(img_example_6)
+            st.text("productid: \n4128438366")
+        with image_column_2:
+            st.image(img_example_7)
+            st.text("productid: \n3929899732")
+        with image_column_3:
+            st.image(img_example_8)
+            st.text("productid: \n152993898")
+        with image_column_4:
+            st.image(img_example_9)
+            st.text("productid: \n4181949876")
+
+    with st.container():
+        st.write("---")
+        st.header("Characterization of the X-train DataFrame:")
+
+        st.write("### Info report of DataFrame X_train:")
+        X_train_info = capture_df_info(X_train)
+        st.text(X_train_info)
+        st.markdown(
+            """
+            <p style="font-size: 25px;">
+            We find that there are 29,800 products with missing descriptions. Instead of
+            eliminating these items or deleting the 'description' column, we choose to 
+            concatenate the 'designation' and 'description' columns into a unique column 
+            containing the text information for each item. 
+            </p>
+            """
+            ,
+            unsafe_allow_html=True
+        )
+        
+        st.write("### Info report of DataFrame Y_train:")
+        X_train_info = capture_df_info(Y_train)
+        st.text(X_train_info)
+        st.markdown(
+            """
+            <p style="font-size: 25px;">
+            Y_train has no missing values. 
+            </p>
+            """
+            ,
+            unsafe_allow_html=True
+        )
+        
+        st.write("### Info report of DataFrame X_test:")
+        X_test_info = capture_df_info(X_test)
+        st.text(X_test_info)
+        st.markdown(
+            """
+            <p style="font-size: 25px;">
+            Lastly, X_test has 4,886 items with missing descriptions. Similarly to the
+            X_train DataFrame, we will concatenate the columns 'designation' and 
+            'description' to create a unique text column. 
+            </p>
+            """
+            ,
+            unsafe_allow_html=True
+        )
+    st.write("---")
+
+    with st.container(): 
+            st.markdown(
+            """
             <p style="font-size: 25px;">
             Below you will find the results of a first exploration done on the dataset. 
             </p>
@@ -80,7 +258,7 @@ def app():
     st.write("---")
     
     with st.container():
-            st.header("Distribution of Product Titles Length ('designation'):")
+            st.header("Distribution of Product Titles Length ('designation' of X_train):")
 
             st.image(img_Distr_product_title_length)
 
@@ -116,7 +294,7 @@ def app():
     st.write("---")
     
     with st.container():
-            st.header("Distribution of Product Descriptions Length ('description'):")
+            st.header("Distribution of Product Descriptions Length ('description' of X_train):")
 
             st.image(img_Distr_product_descript_length)
 # # 80.16663526308352 115.41128398754836 3.1069389792798465 18.023798852941773
@@ -154,7 +332,7 @@ def app():
     st.write("---")
     
     with st.container():
-        st.header("Correlation matrix of the 'productid', 'imageid', and the word length of 'designation' and 'description' variables:")
+        st.header("Correlation matrix of the 'productid', 'imageid', and the word length of 'designation' and 'description' variables of X_train:")
 
         
         st.markdown(

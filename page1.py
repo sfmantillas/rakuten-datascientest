@@ -22,6 +22,8 @@ def app():
         """,
         unsafe_allow_html=True
     )
+
+    
     
     with st.container():
         text_column, image_column = st.columns((3.6,2))
