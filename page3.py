@@ -11,6 +11,8 @@ img_word_cloud_1300 = Image.open("Images/3_Preprocessing/word_cloud_1300.png")
 img_example_word_cloud_1940_stopwords = Image.open("Images/3_Preprocessing/example_word_cloud_1940_stopwords.png")
 img_example_word_cloud_1940_no_stopwords = Image.open("Images/3_Preprocessing/example_word_cloud_1940_no_stopwords.png")
 
+options = ["Text preprocessing", "Image preprocessing"]
+
 def app():
     
     st.title("3. Preprocessing of data")
@@ -19,33 +21,35 @@ def app():
     with st.container(): 
             st.markdown(
             """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             Before feeding any of the machine-learning or deep-neural-network algorithms
             we present later, we separate our data in text and image subsets such that
             they are expressed numerically so as they can be read by our models. Below
-            you find first the process we implemented with the text variables, 
-            'designation' and 'description', and then the procedure we followed with
+            you find a drop menu where you can select between the preprocessing of text variables, 
+            i.e., 'designation' and 'description', or the preprocessing we followed with
             the images. 
             </p>
             """
             ,
             unsafe_allow_html=True
             )
+    selected_option = st.selectbox("Select an option:", options)
 
-    with st.container():
-        st.header("Text preprocessing:")
+    if selected_option == "Text preprocessing":
+        with st.container():
+            st.header("Text preprocessing:")
 
         st.image(img_word_cloud_1300)
         st.markdown(
             """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             The preparation of the text consists of the following steps: 
             </p>
             
-            - <p style="font-size: 25px;"> Concatenation: We start by concatenating the 'designation' and 'description' variables in order to have only one text variable. </p>
-            - <p style="font-size: 25px;"> Tokenization: Then we "tokenize" our text variable, that is, using the method 'word_tokenize' from the library 'nltk' we create an array with every word found in the whole corpus of the dataset, obtaining a list of 10'697,098 character clusters, including symbols such as ':', '%', '<', etc. . This is also the longest stage of the text processing. </p>
-            - <p style="font-size: 25px;"> Count: Using the token array and the method 'Counter' from the library 'collections' we count the number of times a specific word or special character appears in the corpus. As a sample, the first ten most frequent "words" are [('>', 391273), ('<', 391237), ('de', 374144), (':', 311939), (';', 233885), ('&', 222630), ('.', 207131), ('#', 192313), ('39', 168706), ('et', 145732)], where each number is the number of times that character or word is found. </p>
-            - <p style="font-size: 25px;"> First word clouds: At this point we generate our first word clouds for each of the product categories, finding that they are full of stopwords that do not contribute to the characterization of the text. Below it is displayed the word cloud for the product type code 1940. 
+            - <p style="font-size: 20px;"> Concatenation: We start by concatenating the 'designation' and 'description' variables in order to have only one text variable. </p>
+            - <p style="font-size: 20px;"> Tokenization: Then we "tokenize" our text variable, that is, using the method 'word_tokenize' from the library 'nltk' we create an array with every word found in the whole corpus of the dataset, obtaining a list of 10'697,098 character clusters, including symbols such as ':', '%', '<', etc. . This is also the longest stage of the text processing. </p>
+            - <p style="font-size: 20px;"> Count: Using the token array and the method 'Counter' from the library 'collections' we count the number of times a specific word or special character appears in the corpus. As a sample, the first ten most frequent "words" are [('>', 391273), ('<', 391237), ('de', 374144), (':', 311939), (';', 233885), ('&', 222630), ('.', 207131), ('#', 192313), ('39', 168706), ('et', 145732)], where each number is the number of times that character or word is found. </p>
+            - <p style="font-size: 20px;"> First word clouds: At this point we generate our first word clouds for each of the product categories, finding that they are full of stopwords that do not contribute to the characterization of the text. Below it is displayed the word cloud for the product type code 1940. 
             """
             ,  
             unsafe_allow_html=True
@@ -53,9 +57,9 @@ def app():
         st.image(img_example_word_cloud_1940_stopwords)
         st.markdown(
             """
-            - <p style="font-size: 25px;"> Stopwords: We solve this problem using 'stopwords' from the submodule 'nltk.corpus' to download the stopwords of the French language assuming that the huge majority of the corpus is in French . </p>
-            - <p style="font-size: 25px;"> Re-tokenization: We re-tokenize our text ignoring the stopwords, not only making the running time shorter but also yielding a clean array with only meaninful words. </p>
-            - <p style="font-size: 25px;"> Second word clouds: To confirm that the stopwords were correctly ignored and that the words remaining are characterizing the corpus for each category, we generate new word clouds. As an example, below you find the word cloud of the same product category above, 1094. Please notice the difference between them. </p>
+            - <p style="font-size: 20px;"> Stopwords: We solve this problem using 'stopwords' from the submodule 'nltk.corpus' to download the stopwords of the French language assuming that the huge majority of the corpus is in French . </p>
+            - <p style="font-size: 20px;"> Re-tokenization: We re-tokenize our text ignoring the stopwords, not only making the running time shorter but also yielding a clean array with only meaninful words. </p>
+            - <p style="font-size: 20px;"> Second word clouds: To confirm that the stopwords were correctly ignored and that the words remaining are characterizing the corpus for each category, we generate new word clouds. As an example, below you find the word cloud of the same product category above, 1094. Please notice the difference between them. </p>
             """
             ,
             unsafe_allow_html=True
@@ -63,9 +67,9 @@ def app():
         st.image(img_example_word_cloud_1940_no_stopwords)
         st.markdown(
             """
-            - <p style="font-size: 25px;"> Last cleaning: Lastly, we withdraw HTML tags, numbers, and any special character from our processed corpus . </p>
+            - <p style="font-size: 20px;"> Last cleaning: Lastly, we withdraw HTML tags, numbers, and any special character from our processed corpus . </p>
 
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             The result of this process is an array containg the frequency of each word that 
             has passed the filters discussed above. This is the format that we use to feed
             our machine learning and deep neural network models. 
@@ -75,12 +79,9 @@ def app():
             ,
             unsafe_allow_html=True
         )
-            
     
-    
-    st.write("---")
-    
-    with st.container():
+    elif selected_option == "Image preprocessing":
+        with st.container():
             st.header("Image preprocessing:")
 
             st.image(img_Distr_product_title_length)
@@ -92,7 +93,7 @@ def app():
         with text_column:
             st.markdown(
                 """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             We immediately find that we are facing a classification problem with strongly
             unbalanced 27 categories, where the most abundant labelled as '2583' 
             represents itself 12% of the dataset, while the least abundant labelled as
@@ -103,11 +104,17 @@ def app():
             )
         st.markdown(
             """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             represents less than 1% of our dataset. 
             </p>
             """
             ,
             unsafe_allow_html=True
         )
+
+    
+            
+    
+    
+    
             
