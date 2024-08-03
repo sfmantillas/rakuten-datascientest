@@ -51,10 +51,10 @@ def app():
     with st.container(): 
             st.markdown(
             """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             The dataset consists of three CSV files: X_train.csv, 
             y_train.csv and X_test.csv. 
-            X_train.csv contains information of 84916 items,
+            X_train.csv contains information of 84,916 items,
             divided in the columns 'designation' (character array), 
             'description' (character array), 
             'productid' (integer), and 'imageid'  (integer). A
@@ -67,10 +67,10 @@ def app():
     
     st.write(X_train[1:6])
     with st.container():
-        with st.container(): 
+        with st.container():
             st.markdown(
             """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             Attached to the CSV files shared by Rakuten, 
             there is also a ZIP file containing two folders, 
             'image_train' and 'image_test', and inside them the 
@@ -105,10 +105,11 @@ def app():
     with st.container(): 
             st.markdown(
             """
-            <p style="font-size: 25px;">
-            y_train.csv with with 84916 
-            items and the column 'prdtypecode'  (integer) corresponding
-            to the target labels of the items described in file X_train.csv:
+            <p style="font-size: 20px;">
+            Then, the y_train.csv with with 84,916 
+            items and the column 'prdtypecode'  (integer) contains
+            the target labels of the items described in 
+            file X_train.csv:
             </p>
             """
             ,
@@ -120,10 +121,17 @@ def app():
     with st.container(): 
             st.markdown(
             """
-            <p style="font-size: 25px;">
-            and 
-            X_train.csv, with 13812 items and the same features of X_train.csv, leaving
-            the 'prdtypecode' labels unknown as part of the challenge: 
+            <p style="font-size: 20px;">
+            Lastly,  
+            X_train.csv contains 13,812 items and the same 
+            features of X_train.csv, except that there is
+            no Y_test.csv file with the 'prdtypecode' labels, 
+            leaving them unknown. The challenge then 
+            consists of predicting the Y_test labels and
+            submit the classification to Rakuten challenge
+            website where a score is given depending on the
+            success on matching with the real hidden labels. 
+            A sample of the X_test.csv file is shown below: 
             </p>
             """
             ,
@@ -135,7 +143,7 @@ def app():
         with st.container(): 
             st.markdown(
             """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             The corresponding JPG images of the products displayed
             above and contained in the folder 'image_test'
             are shown below:
@@ -171,7 +179,7 @@ def app():
         st.text(X_train_info)
         st.markdown(
             """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             We find that there are 29,800 products with missing descriptions. Instead of
             eliminating these items or deleting the 'description' column, we choose to 
             concatenate the 'designation' and 'description' columns into a unique column 
@@ -187,7 +195,7 @@ def app():
         st.text(X_train_info)
         st.markdown(
             """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             Y_train has no missing values. 
             </p>
             """
@@ -200,7 +208,7 @@ def app():
         st.text(X_test_info)
         st.markdown(
             """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             Lastly, X_test has 4,886 items with missing descriptions. Similarly to the
             X_train DataFrame, we will concatenate the columns 'designation' and 
             'description' to create a unique text column. 
@@ -214,7 +222,7 @@ def app():
     with st.container(): 
             st.markdown(
             """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             Below you will find the results of a first exploration done on the dataset. 
             </p>
             """
@@ -236,24 +244,24 @@ def app():
         with text_column:
             st.markdown(
                 """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             We immediately find that we are facing a classification problem with strongly
             unbalanced 27 categories, where the most abundant labelled as '2583' 
             represents itself 12% of the dataset, while the least abundant labelled as
-            '1180' 
+            '1180' represents less than 1% of our dataset. 
             """
             ,
             unsafe_allow_html=True
             )
-        st.markdown(
-            """
-            <p style="font-size: 25px;">
-            represents less than 1% of our dataset. 
-            </p>
-            """
-            ,
-            unsafe_allow_html=True
-        )
+        #st.markdown(
+        #    """
+        #    <p style="font-size: 20px;">
+        #    represents less than 1% of our dataset. 
+        #    </p>
+        #    """
+        #    ,
+        #    unsafe_allow_html=True
+        #)
     
     st.write("---")
     
@@ -267,7 +275,7 @@ def app():
         st.write("")
         st.markdown(
                 """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             In this histogram we see the number of words employed for the title of the products 
             contained in the 'designation' variable. We can characterize this
             distribution using the median and the first moments of the distribution: 
@@ -276,13 +284,13 @@ def app():
             (fourth moment). From our distribution we obtain: 
             </p>
             
-            - <p style="font-size: 25px;"> Median: 11. The median of 11 informs us that the 50% of the products have designations shorter than 11 words, and similarly for titles with more than 11 words. </p>
-            - <p style="font-size: 25px;"> Mean: 11.56. The mean is slighly displaced to the right respect to the median due to the long tail for long titles, that is, the distribution is skewed to the right and rare long titles pull the mean to that direction. </p>
-            - <p style="font-size: 25px;"> Standard deviation: 6.21. The standard deviation of 6.21 tells us about the dispersion around the mean, and closely around the median, suggesting that the majority of the titles are approximately between 6 and 18 words.   </p>
-            - <p style="font-size: 25px;"> Skewness: 2.10. The positive skewness of 2.10 is consistent to the conclusions we extracted from the median and the mean, the distribution is skewed to the right, it means, there are rare titles with very long titles, some of them with four times more words than the median of 11. 
-            - <p style="font-size: 25px;"> Kurtosis: 7.60. Finally, the kurtosis of 7.60 is informing that the distribution is leptokurtic, that is, it has longer tails and is more peaked close to the mean compared to a normal distribution. In particular, this value larger than 3, reaffirms the existence of outliers and extreme values, it means, the very rare and long titles.  </p>
+            - <p style="font-size: 20px;"> Median: 11. The median of 11 informs us that the 50% of the products have designations shorter than 11 words, and similarly for titles with more than 11 words. </p>
+            - <p style="font-size: 20px;"> Mean: 11.56. The mean is slighly displaced to the right respect to the median due to the long tail for long titles, that is, the distribution is skewed to the right and rare long titles pull the mean to that direction. </p>
+            - <p style="font-size: 20px;"> Standard deviation: 6.21. The standard deviation of 6.21 tells us about the dispersion around the mean, and closely around the median, suggesting that the majority of the titles are approximately between 6 and 18 words.   </p>
+            - <p style="font-size: 20px;"> Skewness: 2.10. The positive skewness of 2.10 is consistent to the conclusions we extracted from the median and the mean, the distribution is skewed to the right, it means, there are rare titles with very long titles, some of them with four times more words than the median of 11. 
+            - <p style="font-size: 20px;"> Kurtosis: 7.60. Finally, the kurtosis of 7.60 is informing that the distribution is leptokurtic, that is, it has longer tails and is more peaked close to the mean compared to a normal distribution. In particular, this value larger than 3, reaffirms the existence of outliers and extreme values, it means, the very rare and long titles.  </p>
 
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             The median of 11 informs us that the 50% of the products have designations
             shorter than 11 words, and similarly for titles with more than 11 words. 
             </p>
@@ -305,19 +313,19 @@ def app():
         
         st.markdown(
                 """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             The histogram above displays the number of words employed to describe the products 
             contained in the 'description' variable. Similarly, we use the 
             the median and the first moments of the distribution to characterize it: 
             </p>
             
-            - <p style="font-size: 25px;"> Median: 35. 50% of the descriptions are shorter than 35 words. </p>
-            - <p style="font-size: 25px;"> Mean: 80.17. There are extremely long descriptions that pull the mean to the left more than the size of the median of 35 words. </p>
-            - <p style="font-size: 25px;"> Standard deviation: 115.4. The number of words of the descriptions is considerably spread aroud the median, with the left side of the interval, that is, the mean minus one standard deviation, reaches negative values, suggesting that many products have descriptions with no words, that is, description is missing.   </p>
-            - <p style="font-size: 25px;"> Skewness: 3.11. The skewness reconfirms the conclusions when we observe the mean minus the median, that it is strongly right-skewed with rare very long descriptions. 
-            - <p style="font-size: 25px;"> Kurtosis: 18.02. Lastly, the kurtosis of 18.02 shows that the distribution is more peaked and has much longer tails than a normal distribution.  </p>
+            - <p style="font-size: 20px;"> Median: 35. 50% of the descriptions are shorter than 35 words. </p>
+            - <p style="font-size: 20px;"> Mean: 80.17. There are extremely long descriptions that pull the mean to the left more than the size of the median of 35 words. </p>
+            - <p style="font-size: 20px;"> Standard deviation: 115.4. The number of words of the descriptions is considerably spread aroud the median, with the left side of the interval, that is, the mean minus one standard deviation, reaches negative values, suggesting that many products have descriptions with no words, that is, description is missing.   </p>
+            - <p style="font-size: 20px;"> Skewness: 3.11. The skewness reconfirms the conclusions when we observe the mean minus the median, that it is strongly right-skewed with rare very long descriptions. 
+            - <p style="font-size: 20px;"> Kurtosis: 18.02. Lastly, the kurtosis of 18.02 shows that the distribution is more peaked and has much longer tails than a normal distribution.  </p>
 
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             Theses observations are at the end consistent to the fact that 4886 products
             have no description. These observations led us to concatenate the designation
             and the description variables to obtain only one text variable that we will
@@ -337,7 +345,7 @@ def app():
         
         st.markdown(
                 """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             Each product is associated with a numerical 'productid' and 'imageid'. 
             These identifiers link the CSV files to a database of images named 
             image_imageid_product_productid.jpg, where each 'productid' corresponds 
@@ -360,7 +368,7 @@ def app():
         with text_column:
             st.markdown(
                 """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             On the left-hand side, we see the correlation matrix for the numerical 
             variables: 'productid', 'imageid', and the word lengths of titles and 
             descriptions. The matrix reveals a strong correlation between 'productid' 
@@ -371,7 +379,7 @@ def app():
             )
         st.markdown(
             """
-            <p style="font-size: 25px;">
+            <p style="font-size: 20px;">
             and 'imageid', suggesting that higher 'productid' codes are likely 
             associated with higher 'imageid' codes. There is also a weak correlation 
             between these codes and the description length, indicating that products 
