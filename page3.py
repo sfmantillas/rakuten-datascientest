@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from PIL import Image
 
-#"🎈 My new app"
+#"🎈 My new app" This version tries to include a dropdown menu to change between text and image preprocessing
 img_Distr_product_type_codes = Image.open("Images/2_Data_Exploration/Distr_product_type_codes.png")
 img_Distr_product_type_codes_pie = Image.open("Images/2_Data_Exploration/Distr_product_type_codes_pie.png")
 img_Distr_product_title_length = Image.open("Images/2_Data_Exploration/Distr_product_title_length.png")
