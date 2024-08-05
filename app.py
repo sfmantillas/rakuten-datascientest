@@ -5,10 +5,11 @@ from PIL import Image
 def main():
 
     # Create a selectbox for page selection
-    page = st.sidebar.selectbox("Select a page", ["Welcome", 
-    "Project description", "Data Exploration", 
-    "Preprocessing", "ML algorithms", 
-    "CNN model", "Conclusions"])
+    page = st.sidebar.selectbox("Select a page", [
+        "Welcome", "Project description", 
+        "Data Exploration", "Preprocessing", 
+        "ML algorithms", "CNN model", 
+        "Proof of concept", "Conclusions"])
 
     if page == "Welcome":
         import page0
@@ -30,9 +31,12 @@ def main():
     elif page == "CNN model":
         import page5
         page5.app()
-    elif page == "Conclusions":
+    elif page == "Proof of concept":
         import page6
         page6.app()
+    elif page == "Conclusions":
+        import page7
+        page7.app()
 
 if __name__ == "__main__":
     main()
