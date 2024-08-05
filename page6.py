@@ -1,7 +1,7 @@
 import streamlit as st
 
 #Import the necessary modules
-import time
+from time import time
 import joblib
 import numpy as np
 import pandas as pd
@@ -227,7 +227,7 @@ def app():
             products = pd.read_csv("CSV/POC_products.csv", encoding='cp1252').fillna("")
             
             # Set new random seed. 
-            np.random.seed(int(time.time()))
+            np.random.seed(int(time()))
 
             #Button to generate a random product id
             if st.button("Select a random product"): 
