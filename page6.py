@@ -8,7 +8,7 @@ import pandas as pd
 from re import findall 
 import matplotlib.pyplot as plt
 from PIL import Image, ImageOps
-#import tensorflow as tf
+import tensorflow as tf
 from tensorflow import float32
 from tensorflow import expand_dims
 from tensorflow import convert_to_tensor
@@ -20,6 +20,9 @@ from tensorflow.keras.applications import EfficientNetB0
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.efficientnet import preprocess_input
 #from sklearn.feature_extraction.text import TfidfVectorizer
+
+st.write(f'tensorflow: {tf.__version__}')
+st.write(f'streamlit: {st.__version__}')
 
 #"🎈 My new app"
 #Img_cover = Image.open("Images/0_FrontCover/FotoJet.jpg")
