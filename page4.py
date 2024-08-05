@@ -71,23 +71,20 @@ def app():
                 st.markdown(
                 """
             <p style="font-size: 25px;">
-            We immediately find that we are facing a classification problem with strongly
-            unbalanced 27 categories, where the most abundant labelled as '2583' 
-            represents itself 12% of the dataset, while the least abundant labelled as
-            '1180' 
+            The Naive Bayes Classifier, based on Bayes Theorem, 
+            is a probabilistic algorithm often used for text 
+            classification. Despite its assumption of feature 
+            independence (hence "naive"), it performs well in 
+            various applications. Performance metrics, a 
+            classification report bar plot, and a confusion matrix 
+            reveal significant variance across product types. 
+            Achieving a 70% overall accuracy, the model is 
+            satisfactory given its simplicity and exclusive 
+            use of text data.
                 """
                 ,
                 unsafe_allow_html=True
                 )
-            st.markdown(
-                """
-                <p style="font-size: 25px;">
-                represents less than 1% of our dataset. 
-                </p>
-                """
-                ,
-                unsafe_allow_html=True
-            )
 
 #############################################
     elif selected_option == "Random Forest Classifier":
@@ -105,23 +102,20 @@ def app():
                 st.markdown(
                 """
             <p style="font-size: 25px;">
-            We immediately find that we are facing a classification problem with strongly
-            unbalanced 27 categories, where the most abundant labelled as '2583' 
-            represents itself 12% of the dataset, while the least abundant labelled as
-            '1180' 
+            The Random Forest Classifier is an ensemble 
+            method that enhances accuracy and robustness
+            by combining multiple decision trees. In this 
+            model, decisions flow from the root to leaf 
+            nodes, with each leaf representing a class 
+            label. Performance metrics, the plot of its 
+            classification report, and confusion matrix 
+            indicate an accuracy of 75%, positioning it 
+            between the Naive Bayes and Support Vector Machine 
+            models in terms of accuracy.
             """
             ,
             unsafe_allow_html=True
                 )
-            st.markdown(
-                """
-                <p style="font-size: 25px;">
-                represents less than 1% of our dataset. 
-                </p>
-                """
-                ,
-                unsafe_allow_html=True
-            )
 
 #############################################
     elif selected_option == "Logistic Regression Classifier":
@@ -139,10 +133,17 @@ def app():
                 st.markdown(
                 """
                 <p style="font-size: 25px;">
-                We immediately find that we are facing a classification problem with strongly
-                unbalanced 27 categories, where the most abundant labelled as '2583' 
-                represents itself 12% of the dataset, while the least abundant labelled as
-                '1180' 
+                The Logistic Regression Classifier is a linear 
+                model used for binary and multiclass classification. 
+                It predicts probabilities by applying the logistic 
+                function to a linear combination of features. 
+                Performance metrics, the plot of classification report  
+                and confusion matrix show an 
+                accuracy of 77%, positioning it between the Random 
+                Forest and Support Vector Machine models in terms of 
+                accuracy. 
+                This model is valued for its simplicity and 
+                effectiveness, especially in text classification tasks. 
                 """
                 ,
                 unsafe_allow_html=True
@@ -165,10 +166,17 @@ def app():
                 st.markdown(
                 """
                 <p style="font-size: 25px;">
-                We immediately find that we are facing a classification problem with strongly
-                unbalanced 27 categories, where the most abundant labelled as '2583' 
-                represents itself 12% of the dataset, while the least abundant labelled as
-                '1180' 
+                The Support Vector Machine Classifier (SVC) 
+                optimally separates classes by finding a 
+                hyperplane in a multi-dimensional space, 
+                using support vectors to define this separation. 
+                With a regularization parameter (C) set to 1, 
+                the model allows more misclassifications in favor 
+                of a larger margin. A linear kernel is used. 
+                Performance metrics, classification report, 
+                and confusion matrix show an overall accuracy 
+                of 83%, significantly higher than the rest of 
+                the models.
                 """
                 ,
                 unsafe_allow_html=True
