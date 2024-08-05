@@ -3,11 +3,43 @@ import pandas as pd
 from PIL import Image
 from io import StringIO
 
+number_to_cat = {
+     0: "10: Specialized Literature: music, physics, religion, philosophy, etc",
+     1: "40: Videogames, PS, XBox, Nintendo, cables",
+     2: "50: Tech, controllers, fans, cables, cameras",
+     3: "60: Console videogames, vintage and modern",
+     4: "1140: Figurines, funkos, collectionable mugs",
+     5: "1160: Collection cards: Pokemon, FIFA, Yu-Gi-Oh",
+     6: "1180: Figurines, table games, miscelaneous", 
+     7: "1280: Kids: Toys, dolls, puff bears", 
+     8: "1281: Toys, cards (Yu-Gi-Oh), babys", 
+     9: "1300: Drones", 
+    10: "1301: Kids and babys toys, clothes, shoes", 
+    11: "1302: Outdoor toys, trampolines, gym, sports", 
+    12: "1320: Babys: deco, carts, backpacks, diappers", 
+    13: "1560: Home deco and furniture", 
+    14: "1920: Cussions. ", 
+    15: "1940: Food, coffee, gums, chiclets, mermalade", 
+    16: "2060: Photography, Christmas, deco, illumination", 
+    17: "2220: Pet toys, collars, cussions, pots, brushes", 
+    18: "2280: Magazines, science, art, historical journals", 
+    19: "2403: Books, comics, mangas", 
+    20: "2462: Console Videogames, consoles and games", 
+    21: "2522: Papershop, A5 size, pencils, notebooks", 
+    22: "2582: Outdoor furniture: tables, deco, plants", 
+    23: "2583: Pools, pumps, water cleaning", 
+    24: "2585: Bricolage, house repair, cleaning", 
+    25: "2705: Books, novels", 
+    26: "2905: PC Videogames"
+}
+
 img_Distr_product_type_codes = Image.open("Images/2_Data_Exploration/Distr_product_type_codes.png")
 img_Distr_product_type_codes_pie = Image.open("Images/2_Data_Exploration/Distr_product_type_codes_pie.png")
 img_Distr_product_title_length = Image.open("Images/2_Data_Exploration/Distr_product_title_length.png")
 img_Distr_product_descript_length = Image.open("Images/2_Data_Exploration/Distr_product_descript_length.png")
 img_Corr_mat = Image.open("Images/2_Data_Exploration/Corr_mat.png")
+
+img_cussion = Image.open("Images/Images_for_POC/POC_image_23.jpg")
 
 # List of image paths
 list_categories = [2583, 1560, 1300, 2060, 2522, 1280, 2403, 2280, 1920, 1160, 1320, 10, 2705, 1140, 2582, 40, 2585, 1302, 1281, 50, 2462, 2905, 60, 2220, 1301, 1940, 1180]
@@ -32,6 +64,15 @@ img_example_7 = Image.open("Images/2_Data_Exploration/image_1265224052_product_3
 img_example_8 = Image.open("Images/2_Data_Exploration/image_940543690_product_152993898.jpg")
 img_example_9 = Image.open("Images/2_Data_Exploration/image_1310030687_product_4181949876.jpg")
 
+img_collage_padding_list = []
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_10.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_40.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_50.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_60.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1140.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1160.png"))
+
+
 def capture_df_info(df):
     info_buffer = StringIO()
     df.info(buf=info_buffer)
@@ -43,12 +84,16 @@ def capture_df_info(df):
 if 'selected_image_index' not in st.session_state:
     st.session_state.selected_image_index = 0
 
+options = ["Datasets", "Distribution of product type codes", "Text exploration", "Image exploration"]
 
 def app():
 
     st.title("2. Data Exploration")
 
-    with st.container(): 
+    selected_option = st.selectbox("Select one section:", options)
+
+    if selected_option==options[0]:
+        with st.container(): 
             st.markdown(
             """
             <p style="font-size: 20px;">
@@ -64,11 +109,10 @@ def app():
             ,
             unsafe_allow_html=True
         )
-    
-    st.write(X_train[1:6])
-    with st.container():
+        st.write(X_train[1:6])
         with st.container():
-            st.markdown(
+            with st.container():
+                st.markdown(
             """
             <p style="font-size: 20px;">
             Attached to the CSV files shared by Rakuten, 
@@ -81,28 +125,28 @@ def app():
             are shown below:
             </p>
             """
-            ,
-            unsafe_allow_html=True
-        )
-
-        image_column_0, image_column_1, image_column_2, image_column_3, image_column_4 = st.columns((1,1,1,1,1))
-        with image_column_0:
-            st.image(img_example_0)
-            st.text("productid: \n436067568")
-        with image_column_1:
-            st.image(img_example_1)
-            st.text("productid: \n201115110")
-        with image_column_2:
-            st.image(img_example_2)
-            st.text("productid: \n50418756")
-        with image_column_3:
-            st.image(img_example_3)
-            st.text("productid: \n278535884")
-        with image_column_4:
-            st.image(img_example_4)
-            st.text("productid: \n5862738")
-
-    with st.container(): 
+                ,
+                unsafe_allow_html=True
+                )
+            
+            image_column_0, image_column_1, image_column_2, image_column_3, image_column_4 = st.columns((1,1,1,1,1))
+            with image_column_0:
+                st.image(img_example_0)
+                st.text("productid: \n436067568")
+            with image_column_1:
+                st.image(img_example_1)
+                st.text("productid: \n201115110")
+            with image_column_2:
+                st.image(img_example_2)
+                st.text("productid: \n50418756")
+            with image_column_3:
+                st.image(img_example_3)
+                st.text("productid: \n278535884")
+            with image_column_4:
+                st.image(img_example_4)
+                st.text("productid: \n5862738")
+        
+        with st.container(): 
             st.markdown(
             """
             <p style="font-size: 20px;">
@@ -115,10 +159,10 @@ def app():
             ,
             unsafe_allow_html=True
         )
-    
-    st.write(Y_train[1:6])
+            
+        st.write(Y_train[1:6])
 
-    with st.container(): 
+        with st.container(): 
             st.markdown(
             """
             <p style="font-size: 20px;">
@@ -138,10 +182,10 @@ def app():
             unsafe_allow_html=True
         )
     
-    st.write(X_test[1:6])
-    with st.container():
-        with st.container(): 
-            st.markdown(
+        st.write(X_test[1:6])
+        with st.container():
+            with st.container(): 
+                st.markdown(
             """
             <p style="font-size: 20px;">
             The corresponding JPG images of the products displayed
@@ -149,35 +193,34 @@ def app():
             are shown below:
             </p>
             """
-            ,
-            unsafe_allow_html=True
-        )
+                ,
+                unsafe_allow_html=True
+                )
 
-        image_column_0, image_column_1, image_column_2, image_column_3, image_column_4 = st.columns((1,1,1,1,1))
-        with image_column_0:
-            st.image(img_example_5)
-            st.text("productid: \n133389013")
-        with image_column_1:
-            st.image(img_example_6)
-            st.text("productid: \n4128438366")
-        with image_column_2:
-            st.image(img_example_7)
-            st.text("productid: \n3929899732")
-        with image_column_3:
-            st.image(img_example_8)
-            st.text("productid: \n152993898")
-        with image_column_4:
-            st.image(img_example_9)
-            st.text("productid: \n4181949876")
+            image_column_0, image_column_1, image_column_2, image_column_3, image_column_4 = st.columns((1,1,1,1,1))
+            with image_column_0:
+                st.image(img_example_5)
+                st.text("productid: \n133389013")
+            with image_column_1:
+                st.image(img_example_6)
+                st.text("productid: \n4128438366")
+            with image_column_2:
+                st.image(img_example_7)
+                st.text("productid: \n3929899732")
+            with image_column_3:
+                st.image(img_example_8)
+                st.text("productid: \n152993898")
+            with image_column_4:
+                st.image(img_example_9)
+                st.text("productid: \n4181949876")
+        
+        with st.container():
+            st.write("---")
 
-    with st.container():
-        st.write("---")
-        st.header("Characterization of the X-train DataFrame:")
-
-        st.write("### Info report of DataFrame X_train:")
-        X_train_info = capture_df_info(X_train)
-        st.text(X_train_info)
-        st.markdown(
+            st.write("### Info report of DataFrame X_train:")
+            X_train_info = capture_df_info(X_train)
+            st.text(X_train_info)
+            st.markdown(
             """
             <p style="font-size: 20px;">
             We find that there are 29,800 products with missing descriptions. Instead of
@@ -188,12 +231,12 @@ def app():
             """
             ,
             unsafe_allow_html=True
-        )
+            )
         
-        st.write("### Info report of DataFrame Y_train:")
-        X_train_info = capture_df_info(Y_train)
-        st.text(X_train_info)
-        st.markdown(
+            st.write("### Info report of DataFrame Y_train:")
+            X_train_info = capture_df_info(Y_train)
+            st.text(X_train_info)
+            st.markdown(
             """
             <p style="font-size: 20px;">
             Y_train has no missing values. 
@@ -201,12 +244,12 @@ def app():
             """
             ,
             unsafe_allow_html=True
-        )
+            )
         
-        st.write("### Info report of DataFrame X_test:")
-        X_test_info = capture_df_info(X_test)
-        st.text(X_test_info)
-        st.markdown(
+            st.write("### Info report of DataFrame X_test:")
+            X_test_info = capture_df_info(X_test)
+            st.text(X_test_info)
+            st.markdown(
             """
             <p style="font-size: 20px;">
             Lastly, X_test has 4,886 items with missing descriptions. Similarly to the
@@ -216,33 +259,23 @@ def app():
             """
             ,
             unsafe_allow_html=True
-        )
-    st.write("---")
+            )
+        st.write("---")
 
-    with st.container(): 
-            st.markdown(
-            """
-            <p style="font-size: 20px;">
-            Below you will find the results of a first exploration done on the dataset. 
-            </p>
-            """
-            ,
-            unsafe_allow_html=True
-        )
-    
-    with st.container():
+    if selected_option==options[1]:
+        with st.container():
             st.header("Distribution of the product type codes 'prdtypecode':")
 
             st.image(img_Distr_product_type_codes)
 
             
-    with st.container():
-        st.write("")
-        image_column, text_column = st.columns((1,1))
-        with image_column:
-            st.image(img_Distr_product_type_codes_pie)
-        with text_column:
-            st.markdown(
+        with st.container():
+            st.write("")
+            image_column, text_column = st.columns((1,1))
+            with image_column:
+                st.image(img_Distr_product_type_codes_pie)
+            with text_column:
+                st.markdown(
                 """
             <p style="font-size: 20px;">
             We immediately find that we are facing a classification problem with strongly
@@ -263,17 +296,27 @@ def app():
         #    unsafe_allow_html=True
         #)
     
-    st.write("---")
+    if selected_option==options[2]:
+        with st.container(): 
+            st.markdown(
+            """
+            <p style="font-size: 20px;">
+            Below you will find a summary of the first exploration done on the text variables of the dataset. 
+            </p>
+            """
+            ,
+            unsafe_allow_html=True
+        )
     
-    with st.container():
+        with st.container():
             st.header("Distribution of Product Titles Length ('designation' of X_train):")
 
             st.image(img_Distr_product_title_length)
 
             
-    with st.container():
-        st.write("")
-        st.markdown(
+        with st.container():
+            st.write("")
+            st.markdown(
                 """
             <p style="font-size: 20px;">
             In this histogram we see the number of words employed for the title of the products 
@@ -297,21 +340,20 @@ def app():
             """
             ,
             unsafe_allow_html=True
-            )
+        )
     
-    st.write("---")
+        st.write("---")
     
-    with st.container():
+        with st.container():
             st.header("Distribution of Product Descriptions Length ('description' of X_train):")
 
             st.image(img_Distr_product_descript_length)
 # # 80.16663526308352 115.41128398754836 3.1069389792798465 18.023798852941773
             
-    with st.container():
-        st.write("")
-        image_column, text_column = st.columns((1,1))
+        with st.container():
+            st.write("")
         
-        st.markdown(
+            st.markdown(
                 """
             <p style="font-size: 20px;">
             The histogram above displays the number of words employed to describe the products 
@@ -337,13 +379,13 @@ def app():
             unsafe_allow_html=True
             )
     
-    st.write("---")
+        st.write("---")
     
-    with st.container():
-        st.header("Correlation matrix of the 'productid', 'imageid', and the word length of 'designation' and 'description' variables of X_train:")
+        with st.container():
+            st.header("Correlation matrix of the 'productid', 'imageid', and the word length of 'designation' and 'description' variables of X_train:")
 
         
-        st.markdown(
+            st.markdown(
                 """
             <p style="font-size: 20px;">
             Each product is associated with a numerical 'productid' and 'imageid'. 
@@ -360,24 +402,24 @@ def app():
             unsafe_allow_html=True
             )
             
-    with st.container():
-        st.write("")
-        image_column, text_column = st.columns((2,1))
-        with image_column:
-            st.image(img_Corr_mat)
-        with text_column:
-            st.markdown(
+        with st.container():
+            st.write("")
+            image_column, text_column = st.columns((2,1))
+            with image_column:
+                st.image(img_Corr_mat)
+            with text_column:
+                st.markdown(
                 """
-            <p style="font-size: 20px;">
-            On the left-hand side, we see the correlation matrix for the numerical 
-            variables: 'productid', 'imageid', and the word lengths of titles and 
-            descriptions. The matrix reveals a strong correlation between 'productid' 
-            </p>
-            """
+                <p style="font-size: 20px;">
+                On the left-hand side, we see the correlation matrix for the numerical 
+                variables: 'productid', 'imageid', and the word lengths of titles and 
+                descriptions. The matrix reveals a strong correlation between 'productid' 
+                </p>
+                """
             ,
             unsafe_allow_html=True
             )
-        st.markdown(
+            st.markdown(
             """
             <p style="font-size: 20px;">
             and 'imageid', suggesting that higher 'productid' codes are likely 
@@ -391,7 +433,80 @@ def app():
             """
             ,
             unsafe_allow_html=True
-        )
+            )
     
-    st.write("---")
+    if selected_option==options[3]:
+
+        with st.container():
+            st.header("Exploration of labelled product images:")
+            
+            with st.container():
+                st.write("")
+                image_column, text_column = st.columns((1,1))
+                with image_column:
+                    st.image(img_cussion)
+                with text_column:
+                    st.markdown(
+                """
+            <p style="font-size: 20px;">
+            The dataset includes product images linked to 
+            textual data via image and product IDs. Combining 
+            images with text can enhance prediction accuracy. 
+            Initial image analysis, shown through collages of 
+            the first 200 products, reveals that certain 
+            categories (e.g., pool equipment and cushions) 
+            have visually similar features, aiding 
+            classification. In contrast, other categories 
+            (e.g., outdoor equipment) show more diverse 
+            images, making classification more challenging. 
+            Observations include dominant white spaces in 
+            some images that need addressing. With the dataset 
+            analyzed, the next step involves modeling, divided 
+            into four approaches with specific data preparation 
+            steps.
+            </p>
+            """
+                    ,
+                    unsafe_allow_html=True
+                    )
+        with st.container(): 
+            st.markdown(
+            """
+            <p style="font-size: 20px;">
+            Below you find a dropdown menu to explore image samples
+            of the 27 categories with a short description we made
+            to characterize each category. 
+            </p>
+            """
+            ,
+            unsafe_allow_html=True
+        )    
+
+        img_options=["10", "40", "50", "60", "1140", "1160"]
+        selected_img_option = st.selectbox("Select a product code type:", img_options)
+
+        for i, x in enumerate(img_options):
+            if selected_img_option==img_options[i]:
+                st.subheader("{}".format(number_to_cat[i]))
+                st.image(img_collage_padding_list[i])
+        
+        # if selected_img_option==img_options[1]:
+        #     st.subheader("{}".format(number_to_cat[1]))
+        #     st.image(img_collage_padding_01)
+        
+        # if selected_img_option==img_options[2]:
+        #     st.subheader("{}".format(number_to_cat[2]))
+        #     st.image(img_collage_padding_01)
+        
+        # if selected_img_option==img_options[3]:
+        #     st.subheader("{}".format(number_to_cat[3]))
+        #     st.image(img_collage_padding_01)
+        
+        # if selected_img_option==img_options[4]:
+        #     st.subheader("{}".format(number_to_cat[4]))
+        #     st.image(img_collage_padding_01)
+        
+        # if selected_img_option==img_options[5]:
+        #     st.subheader("{}".format(number_to_cat[5]))
+        #     st.image(img_collage_padding_01)
     
