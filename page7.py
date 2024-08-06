@@ -5,51 +5,66 @@ from PIL import Image
 #"🎈 My new app"
 Img_cover = Image.open("Images/0_FrontCover/FotoJet.jpg")
 
+Img_POC_0 = Image.open("Images/6_Conclusions/POC_0.jpg")
+Img_POC_1 = Image.open("Images/6_Conclusions/POC_1.jpg")
+
 def app():
     
     st.title("Business and scientific conclusions")
     
     with st.container():
-            st.header("Third approach: ")
+            st.header("Scientific Conclusion: ")
     with st.container():
-        st.write("")
+        st.markdown(
+            """
+            - <p style="font-size: 20px;"> Model Effectiveness: High accuracies, especially from Deep Learning Approach #3, show effective e-commerce product categorization. </p>
+            - <p style="font-size: 20px;"> Simple vs. Complex Models: Simple Machine Learning models achieve satisfying predictions. On the other hand, complex deep learning models yield the best results. </p>
+            - <p style="font-size: 20px;"> Multi-Modal Inputs: Effective combination of text and image data boosts model performance and the importance of including images in classification tasks. </p>
+            """
+            ,  
+            unsafe_allow_html=True
+        )
+
         
-        st.write(
-                """
-             - High Accuracy Achieved: Models, particularly Deep Learning Approach #3, show excellent results in classifying e-commerce products, demonstrating effective learning from data.
-
-             - Simple vs. Complex Models: Simple Machine Learning models offer satisfactory results, but more complex deep learning models yield superior performance.
-
-             - Multi-modal Input Advantage: Combining text and image data enhances classification accuracy, underscoring the benefit of using multi-modal inputs.
+        st.markdown(
             """
-            ,
-            unsafe_allow_html=True
-            )
-
-        img_Layers_Vitmer_Neu = Image.open("Images/5_DNN_Model/Layers_Vitmer_Neu.png")
-        st.image(img_Layers_Vitmer_Neu)
-
-        st.write(
-                """
-            Combined Branch:
-            - Layers: Concatenation → Dense (64 neurons, ReLU) → Batch Normalization → Dropout (50%) → Output (softmax activation).
-
-            Training:
-             - Compile: Nadam optimizer, sparse categorical cross-entropy loss.
-             - Callbacks: Early stopping, learning rate reduction.
-             - Performance: Achieves over 90% accuracy on both training and test sets.
-            
-            Key Metrics:
-             - Detailed classification report and confusion matrix: Shows high precision across all product types.
+            - <p style="font-size: 20px;"> Further Analysis: Determine which modality (text or images) contributes more to performance. </p>
+            - <p style="font-size: 20px;"> Enhancing Models: Adding more or better quality data improves models and better preprocessing techniques and additional data sources (e.g., user reviews) enhance performance. </p>
+            - <p style="font-size: 20px;"> Insights from Misclassifications: Analyzing poorly predicted product types highlights areas needing more data. </p>
             """
-            ,
+            ,  
             unsafe_allow_html=True
-            )
-        img_Vitaly_Acc_Loss = Image.open("Images/5_DNN_Model/Vitaly_Acc_Loss.jpg")
-        st.image(img_Vitaly_Acc_Loss)
+        )
 
-        img_Vitaly_Classification_report = Image.open("Images/5_DNN_Model/Vitaly_Classification_report.jpg")
-        st.image(img_Vitaly_Classification_report)
+        st.image(Img_POC_0)
+        
+    with st.container():
+            st.header("Business Conclusion: ")
+    with st.container():
+        st.markdown(
+            """
+            - <p style="font-size: 20px;"> Automation & Cost Reduction: Automates product categorization, reducing manual effort and operational costs. </p>
+            - <p style="font-size: 20px;"> Scalability: Efficiently handles larger product volumes without more staff. </p>
+            - <p style="font-size: 20px;"> Customer Experience: Enhances search, navigation, and personalization, boosting satisfaction and conversions. </p>
+            - <p style="font-size: 20px;"> Market Insights: Provides insights into trends and preferences for better inventory and marketing strategies. </p>
+            """
+            ,  
+            unsafe_allow_html=True
+        )
 
-        img_Vitaly_CM = Image.open("Images/5_DNN_Model/Vitaly_CM.jpg")
-        st.image(img_Vitaly_CM)
+        
+        st.markdown(
+            """
+            - <p style="font-size: 20px;"> Data Quality & Refinement: Identifies and refines category definitions, improving data quality. </p>
+            - <p style="font-size: 20px;"> Strategic Planning: Justifies AI investments for broader business improvements (e.g., demand forecasting). </p>
+            - <p style="font-size: 20px;"> Business Expansion: Adapts for new markets or products, aiding expansion. </p>
+            - <p style="font-size: 20px;"> Error Handling: Robust system for misclassifications, flagging uncertain predictions for review. </p>
+            - <p style="font-size: 20px;"> Continuous Improvement: Feedback loop for analyzing errors and retraining models. </p>
+            """
+            ,  
+            unsafe_allow_html=True
+        )
+
+        st.image(Img_POC_1)
+
+    st.title("Thanks for your attention :smile:")
