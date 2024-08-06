@@ -167,7 +167,7 @@ def app():
             """
             <p style="font-size: 20px;">
             Lastly,  
-            X_train.csv contains 13,812 items and the same 
+            X_test.csv contains 13,812 items and the same 
             features of X_train.csv, except that there is
             no Y_test.csv file with the 'prdtypecode' labels, 
             leaving them unknown. The challenge then 
