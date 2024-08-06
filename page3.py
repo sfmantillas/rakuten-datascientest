@@ -11,6 +11,20 @@ img_word_cloud_1300 = Image.open("Images/3_Preprocessing/word_cloud_1300.png")
 img_example_word_cloud_1940_stopwords = Image.open("Images/3_Preprocessing/example_word_cloud_1940_stopwords.png")
 img_example_word_cloud_1940_no_stopwords = Image.open("Images/3_Preprocessing/example_word_cloud_1940_no_stopwords.png")
 
+img_example_0 = Image.open("Images/3_Preprocessing/example_0.jpg")
+img_example_1 = Image.open("Images/3_Preprocessing/example_1.jpg")
+img_example_2 = Image.open("Images/3_Preprocessing/example_2.jpg")
+img_example_3 = Image.open("Images/3_Preprocessing/example_3.jpg")
+img_example_4 = Image.open("Images/3_Preprocessing/example_4.jpg")
+
+img_example_5 = Image.open("Images/3_Preprocessing/example_5.jpg")
+img_example_6 = Image.open("Images/3_Preprocessing/example_6.jpg")
+img_example_7 = Image.open("Images/3_Preprocessing/example_7.jpg")
+img_example_8 = Image.open("Images/3_Preprocessing/example_8.jpg")
+img_example_9 = Image.open("Images/3_Preprocessing/example_9.jpg")
+
+
+
 options = ["Text preprocessing", "Image preprocessing"]
 
 def app():
@@ -83,14 +97,6 @@ def app():
     elif selected_option == "Image preprocessing":
         with st.container():
             st.header("Image preprocessing:")
-
-            st.image(img_Distr_product_title_length)
-    with st.container():
-        st.write("")
-        image_column, text_column = st.columns((1,1))
-        with image_column:
-            st.image(img_Distr_product_type_codes_pie)
-        with text_column:
             st.markdown(
                 """
             <p style="font-size: 20px;">
@@ -102,15 +108,81 @@ def app():
             ,
             unsafe_allow_html=True
             )
-        st.markdown(
-            """
+            
+            st.markdown(
+                """
             <p style="font-size: 20px;">
-            represents less than 1% of our dataset. 
+            The image preprocessing then goes as follows: 
+            </p>
+            
+            - <p style="font-size: 20px;"> Load image set: We start by 
+              all the direction to the images contained in the image_train 
+              folder using the productid and imageid columns from the X_train.csv. 
+              Below we show five images as examples before the preprocessing. </p>
+            """
+            ,
+            unsafe_allow_html=True
+            )
+
+            image_column_0, image_column_1, image_column_2, image_column_3, image_column_4 = st.columns((1,1,1,1,1))
+            with image_column_0:
+                st.image(img_example_0)
+            with image_column_1:
+                st.image(img_example_1)
+            with image_column_2:
+                st.image(img_example_2)
+            with image_column_3:
+                st.image(img_example_3)
+            with image_column_4:
+                st.image(img_example_4)
+
+            
+            st.markdown(
+                """
+            - <p style="font-size: 20px;"> Border cropping: We crop the images from all sides with one pixel width using the method ImageOps.crop(image, border=1). This can help to remove any unwanted edges that may have appeared after resizing. </p>
+            - <p style="font-size: 20px;"> Numpy conversion: We convert all the images to a NumPy array, the format accepted for the majority of Machine learning and Deep learning models. </p>
+            - <p style="font-size: 20px;"> Normalization: We finish by normalizing the pixel values from the range [0, 255] to [0, 1] to standardize the input values, important to increase quality when working with neural networks. </p>
+
+            
+            <p style="font-size: 20px;">
+            The resulting images after the process describe above are shown below: 
             </p>
             """
             ,
             unsafe_allow_html=True
-        )
+            )
+
+            image_column_0, image_column_1, image_column_2, image_column_3, image_column_4 = st.columns((1,1,1,1,1))
+            with image_column_0:
+                st.image(img_example_5)
+            with image_column_1:
+                st.image(img_example_6)
+            with image_column_2:
+                st.image(img_example_7)
+            with image_column_3:
+                st.image(img_example_8)
+            with image_column_4:
+                st.image(img_example_9)
+
+            
+            st.markdown(
+                """
+            <p style="font-size: 20px;">
+            For completeness and also as part of the proof-of-concept 
+            demonstration we have designed, we included a step just after 
+            loading the user image consisting on padding it with white
+            spaces so as it transforms into a square image, the geometry required
+            for our preprocessing stage because feeding the model with user image: 
+            </p>
+            """
+            ,
+            unsafe_allow_html=True
+            )
+
+            
+    with st.container():
+        st.write("")
+        
 
     
             
