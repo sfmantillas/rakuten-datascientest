@@ -21,8 +21,10 @@ def app():
                 <p style="font-size: 20px;">
             This model integrates NLP for text and CNNs for image processing. Text data is vectorized using TF-IDF, while images undergo augmentation using Keras' ImageDataGenerator. Key steps include rescaling, shearing, and zooming to enhance robustness and prevent overfitting.
             Model Architecture:
-             - <p style="font-size: 20px;"> Image Branch: Uses MobileNetV2 for feature extraction, followed by GlobalAveragePooling2D, a dense layer with 512 neurons, and a dropout layer.
-             - <p style="font-size: 20px;"> Text Branch: Processes TF-IDF vectors with a dense layer of 512 neurons and a dropout layer.
+            
+            - <p style="font-size: 20px;"> Image Branch: Uses MobileNetV2 for feature extraction, followed by GlobalAveragePooling2D, a dense layer with 512 neurons, and a dropout layer.
+            
+            - <p style="font-size: 20px;"> Text Branch: Processes TF-IDF vectors with a dense layer of 512 neurons and a dropout layer.
             """
             ,
             unsafe_allow_html=True
@@ -36,8 +38,11 @@ def app():
            <p style="font-size: 20px;"> Both branches are concatenated, and a final dense layer with softmax activation classifies into 27 categories.
 
            <p style="font-size: 20px;"> Training Setup:
+           
             - <p style="font-size: 20px;"> Compile: Optimizer, sparse categorical cross-entropy loss, and accuracy metric.
+            
             - <p style="font-size: 20px;"> Data Generators: Batches of 32 for training and validation, with augmentation.
+            
             - <p style="font-size: 20px;"> Callbacks: EarlyStopping and ReduceLROnPlateau for monitoring and adjusting training.
 
             <p style="font-size: 20px;"> Results: Achieved performance over 75% accuracy after 20 epochs, with similar training and validation accuracy, indicating no overfitting or underfitting.
@@ -56,14 +61,16 @@ def app():
         st.write(
                 """
             <p style="font-size: 20px;">  Overview:
+             
              - <p style="font-size: 20px;"> Combines: Text and image data using TensorFlow and Keras.
              - <p style="font-size: 20px;"> Text Preprocessing: Tokenization, stop word removal, and TF-IDF vectorization (up to 10,000 features).
              - <p style="font-size: 20px;"> Text Model: Dense layers with 128 and 64 neurons, ReLU activation.
              - <p style="font-size: 20px;"> Image Model: Input layer (128x128 RGB), three Conv2D layers (32, 64, 128 filters) with ReLU, MaxPooling, and Flatten.
 
             <p style="font-size: 20px;"> Integration:
-             - <p style="font-size: 20px;"> Combined Branch: Concatenates text and image features, processes with dense layers (128 and 64 neurons).
-             - <p style="font-size: 20px;"> Output Layer: Softmax activation for classification into 27 categories.
+            
+            - <p style="font-size: 20px;"> Combined Branch: Concatenates text and image features, processes with dense layers (128 and 64 neurons).
+            - <p style="font-size: 20px;"> Output Layer: Softmax activation for classification into 27 categories.
             """
             ,
             unsafe_allow_html=True
@@ -75,8 +82,11 @@ def app():
         st.write(
                 """
            <p style="font-size: 20px;"> Training:
+            
             - <p style="font-size: 20px;"> Data Generators: Augmented text and image data (batch size: 32).
+            
             - <p style="font-size: 20px;"> Compile: Adam optimizer, categorical cross-entropy loss, accuracy metric.
+            
             - <p style="font-size: 20px;"> Train/Validation Split: 80/20.
 
             <p style="font-size: 20px;"> Results: Achieved performance over 80% on training set, 80% on validation set over 10 epochs.
@@ -95,14 +105,19 @@ def app():
         st.write(
                 """
             <p style="font-size: 20px;"> Overview:
+             
              - <p style="font-size: 20px;"> Combines: Text and image features for product classification.
+             
              - <p style="font-size: 20px;"> Text Preprocessing: Tokenization, stop word removal, synonym augmentation, TF-IDF vectorization (5,000 features).
+             
              - <p style="font-size: 20px;"> Image Processing: EfficientNetB0 for feature extraction, resizing, normalization, augmentation.
 
             <p style="font-size: 20px;"> Text Branch:
+             
              - <p style="font-size: 20px;"> Layers: Dense (512 neurons, ReLU) → Batch Normalization → Dropout (25%) → Dense (256 neurons, ReLU) → Batch Normalization → Dropout (50%).
 
             <p style="font-size: 20px;"> Image Branch:
+             
              - <p style="font-size: 20px;"> Layers: Dense (256 neurons, ReLU) → Batch Normalization → Dropout (50%) → Dense (128 neurons, ReLU) → Batch Normalization → Dropout (50%).
             """
             ,
@@ -115,14 +130,19 @@ def app():
         st.write(
                 """
             <p style="font-size: 20px;"> Combined Branch:
+            
             - <p style="font-size: 20px;"> Layers: Concatenation → Dense (64 neurons, ReLU) → Batch Normalization → Dropout (50%) → Output (softmax activation).
 
             <p style="font-size: 20px;"> Training:
+             
              - <p style="font-size: 20px;"> Compile: Nadam optimizer, sparse categorical cross-entropy loss.
+             
              - <p style="font-size: 20px;"> Callbacks: Early stopping, learning rate reduction.
+             
              - <p style="font-size: 20px;"> Performance: Achieves over 85% accuracy on both training and test sets.
             
             <p style="font-size: 20px;"> Key Metrics:
+             
              - <p style="font-size: 20px;"> Detailed classification report and confusion matrix: Shows high precision across all product types.
             """
             ,
