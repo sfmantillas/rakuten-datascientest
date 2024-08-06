@@ -132,12 +132,12 @@ def app():
             ,
             unsafe_allow_html=True
             )
-        img_Vitaly_Acc_Loss = Image.open("Images/5_DNN_Model/Vitaly_Acc_Loss.jpg")
+        img_Vitaly_Acc_Loss = Image.open("Images/5_DNN_Model/Vitaly_Acc_Loss.png")
         st.image(img_Vitaly_Acc_Loss)
 
-        img_Vitaly_Classification_report = Image.open("Images/5_DNN_Model/Vitaly_Classification_report.jpg")
+        img_Vitaly_Classification_report = Image.open("Images/5_DNN_Model/Vitaly_Classification_report.png")
         st.image(img_Vitaly_Classification_report)
 
-        img_Vitaly_CM = Image.open("Images/5_DNN_Model/Vitaly_CM.jpg")
+        img_Vitaly_CM = Image.open("Images/5_DNN_Model/Vitaly_CM.png")
         st.image(img_Vitaly_CM)
     
