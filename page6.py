@@ -229,7 +229,7 @@ def app():
             )
 
             # Load dataset containing samples
-            products = pd.read_csv("CSV/POC_products.csv", encoding='cp1252').fillna("")
+            products = pd.read_csv("./Datasets/POC_products.csv", encoding='cp1252').fillna("")
 
             # Set new random seed.
             np.random.seed(int(time()))
@@ -237,7 +237,7 @@ def app():
             #Button to generate a random product id
             if st.button("Select a random product"):
 
-                random_id = np.random.randint(19)#19-30
+                random_id = np.random.randint(19)
                 #st.write(f"Random Integer: {random_int}")
 
                 ## Extract
