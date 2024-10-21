@@ -39,7 +39,7 @@ img_Distr_product_title_length = Image.open("Images/2_Data_Exploration/Distr_pro
 img_Distr_product_descript_length = Image.open("Images/2_Data_Exploration/Distr_product_descript_length.png")
 img_Corr_mat = Image.open("Images/2_Data_Exploration/Corr_mat.png")
 
-img_cussion = Image.open("Images/Images_for_POC/POC_image_23.jpg")
+img_cussion = Image.open("Images/Images_for_POC/POC_image_8.jpg")
 
 # List of image paths
 list_categories = [2583, 1560, 1300, 2060, 2522, 1280, 2403, 2280, 1920, 1160, 1320, 10, 2705, 1140, 2582, 40, 2585, 1302, 1281, 50, 2462, 2905, 60, 2220, 1301, 1940, 1180]
