@@ -482,7 +482,9 @@ def app():
             unsafe_allow_html=True
         )    
 
-        img_options=["10", "40", "50", "60", "1140", "1160"]
+        img_options=[  "10",   "40",   "50",   "60", "1140", "1160", "1180", "1280", "1281", 
+                     "1300", "1301", "1302", "1320", "1560", "1920", "1940", "2060", "2220", 
+                     "2280", "2403", "2462", "2522", "2582", "2583", "2585", "2705", "2905"]
         selected_img_option = st.selectbox("Select a product code type:", img_options)
 
         for i, x in enumerate(img_options):
