@@ -237,7 +237,7 @@ def app():
             #Button to generate a random product id
             if st.button("Select a random product"):
 
-                random_id = np.random.randint(19)
+                random_id = np.random.randint(20)
                 #st.write(f"Random Integer: {random_int}")
 
                 ## Extract
