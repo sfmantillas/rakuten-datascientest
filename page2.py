@@ -71,6 +71,29 @@ img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_pa
 img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_60.png"))
 img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1140.png"))
 img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1160.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1180.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1280.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1281.png"))
+
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1300.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1301.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1302.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1320.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1560.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1920.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_1940.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_2060.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_2220.png"))
+
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_2280.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_2403.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_2462.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_2522.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_2582.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_2583.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_2585.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_2705.png"))
+img_collage_padding_list.append(Image.open("Images/2_Data_Exploration/collage_padding_2905.png"))
 
 
 def capture_df_info(df):
