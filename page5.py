@@ -139,7 +139,7 @@ def app():
              
              - <p style="font-size: 20px;"> Callbacks: Early stopping, learning rate reduction.
              
-             - <p style="font-size: 20px;"> Performance: Achieves over 85% accuracy on both training and test sets.
+             - <p style="font-size: 20px;"> Performance: Achieves over 93% accuracy on both training and test sets.
             
             <p style="font-size: 20px;"> Key Metrics:
              
